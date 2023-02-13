@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <!-- добавляем русский язык -->
+  <meta charset="utf-8">
+  <head>
+    <title>Простая страница на Vue.js</title>
+    <!-- подключаем фреймворк -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- создаём блок, к которому будет привязано приложение -->
+    <div id="app">
+      <!-- показываем, что надо вывести что-то на экран -->
+      {{ message }}
+      <button v-on:click="reverseMessage">Перевернуть сообщение</button>
+    </div>
+
+    <!-- создаём новый блок -->
+    <div id="app-2">
+      <p>{{ message }}</p>
+      <!-- делаем внутри него кнопку и привязываем к ней обработчик -->
+      <button v-on:click="reverseMessage">Перевернуть сообщение</button>
+    </div>
+
+    <!-- начинаем писать на Vue.js -->
+    <script>
+      // создаём новое приложение для первого блока
+      var app = new Vue({
+        // привязываем его через название
+        el: "#app",
+        // пишем сообщение, которое нужно вывести
+        data: {
+          message: "Привет, это журнал «Код»!"
+        },
+        methods: {
+          // при нажатии — переворачиваем строку задом наперёд и наоборот
+          reverseMessage: function () {
+            // в любой момент можно использовать код на JavaScript 
+            this.message = this.message.split('').reverse().join('')
+          }
+        }
+      });
+
+      // создаём новое приложение
+      var app2 = new Vue({
+        el: '#app-2',
+        data: {
+          message: 'Привет, это снова «Код»!'
+        },
+        // пишем метод
+        methods: {
+          // при нажатии — переворачиваем строку задом наперёд и наоборот
+          reverseMessage: function () {
+            // в любой момент можно использовать код на JavaScript 
+            this.message = this.message.split('').reverse().join('')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
